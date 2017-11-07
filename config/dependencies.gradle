@@ -1,0 +1,27 @@
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+
+    androidSupportVersion = "26.1.0"
+    constraintLayoutVersion = "1.0.2"
+    retrofitVersion = "2.3.0"
+
+    androidSupportDependencies = [
+            appcompat           : "com.android.support:appcompat-v7:${androidSupportVersion}",
+            recyclerview        : "com.android.support:recyclerview-v7:${androidSupportVersion}",
+            design              : "com.android.support:design:${androidSupportVersion}",
+            customtabs          : "com.android.support:customtabs:${androidSupportVersion}",
+            constraintlayout    : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}"
+    ]
+
+    retrofitDependencies = [
+            adapterRx     : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            converterGson : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofit      : "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    ]
+}
+
