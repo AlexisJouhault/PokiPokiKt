@@ -8,7 +8,6 @@ ext {
 
     androidSupportVersion = "26.1.0"
     constraintLayoutVersion = "1.0.2"
-    retrofitVersion = "2.3.0"
 
     androidSupportDependencies = [
             appcompat           : "com.android.support:appcompat-v7:${androidSupportVersion}",
@@ -18,10 +17,80 @@ ext {
             constraintlayout    : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}"
     ]
 
+    androidSupportVersion = "26.1.0"
+    constraintLayoutVersion = "1.0.2"
+
+    androidSupportDependencies = [
+            appcompat           : "com.android.support:appcompat-v7:${androidSupportVersion}",
+            recyclerview        : "com.android.support:recyclerview-v7:${androidSupportVersion}",
+            design              : "com.android.support:design:${androidSupportVersion}",
+            customtabs          : "com.android.support:customtabs:${androidSupportVersion}",
+            constraintlayout    : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}"
+    ]
+
+    retrofitVersion = "2.3.0"
+    retrofitLogVersion = "3.8.0"
+
     retrofitDependencies = [
             adapterRx     : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
             converterGson : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-            retrofit      : "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+            retrofit      : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitLogger: "com.squareup.okhttp3:logging-interceptor:${retrofitLogVersion}"
+    ]
+
+    rxAndroidVersion = "2.0.1"
+    rxJavaVersion = "2.1.6"
+    rxBindingVersion = "2.0.0"
+
+    rxDependencies = [
+            rxJava      : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid   : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            rxbindingv7 : "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:${rxBindingVersion}"
+    ]
+
+    butterknifeVersion = "8.8.1"
+
+    butterknifeDependencies = [
+            butterknife : "com.jakewharton:butterknife:${butterknifeVersion}",
+            compiler    : "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
+    ]
+
+    glideVersion = "4.0.0-RC1"
+    circleImageViewVersion = "2.2.0"
+
+    visualsDependencies = [
+            glideCompiler   : "com.github.bumptech.glide:compiler:${glideVersion}",
+            glide           : "com.github.bumptech.glide:glide:${glideVersion}",
+            circleImageView : "de.hdodenhof:circleimageview:${circleImageViewVersion}"
+    ]
+
+    daggerVersion = "2.11"
+    annotationVersion = "10.0-b28"
+    koinVersion = "0.5.2"
+
+    diDependencies = [
+            dagger                  : "com.google.dagger:dagger:${daggerVersion}",
+            daggerAndroid           : "com.google.dagger:dagger-android:${daggerVersion}",
+            daggerAndroidSupport    : "com.google.dagger:dagger-android-support:${daggerVersion}",
+            daggerCompiler          : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            annotation              : "org.glassfish:javax.annotation:${annotationVersion}",
+            koin                    : "org.koin:koin-android:${koinVersion}"
+    ]
+
+    //Tests dependencies
+    jUnitVersion = "4.12"
+    espressoVersion = "3.0.1"
+    runnerVersion = "1.0.1"
+    mockitoVersion = "2.+"
+
+    testDependencies = [
+            junit   : "junit:junit:${jUnitVersion}",
+            mockito : "org.mockito:mockito-core:${mockitoVersion}"
+    ]
+
+    connectedTestDependencies = [
+            runner      : "com.android.support.test:runner:${runnerVersion}",
+            espresso    : "com.android.support.test.espresso:espresso-core:${espressoVersion}"
     ]
 }
 

@@ -6,12 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import com.codercats.pokipoki.base.presentation.core.ViewPagerFragment
 import com.codercats.pokipoki.home.R
+import com.codercats.pokipoki.home.data.di.HomeModule
+import com.codercats.pokipoki.home.presentation.contracts.HomeContract
+import com.codercats.pokipoki.home.presentation.presenters.HomePresenter
+import org.koin.android.ext.android.inject
 
 /**
  * Created by Alexis on 07/11/2017.
  *
  */
-class HomeFragment : ViewPagerFragment() {
+class HomeFragment : ViewPagerFragment(), HomeContract.View {
+
+    override val contextName: String
+        get() = HomeModule.CTX_HOME_MODULE
+
+    override val presenter by inject<HomePresenter>()
 
     companion object {
 
@@ -23,7 +32,24 @@ class HomeFragment : ViewPagerFragment() {
 
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        presenter.view = this
+
+        return view
+    }
+
+    override fun showLoading() {
+
+    }
+
+    override fun hideLoading() {
+
     }
 }

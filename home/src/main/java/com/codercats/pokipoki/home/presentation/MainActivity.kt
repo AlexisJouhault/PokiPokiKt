@@ -5,6 +5,9 @@ import android.os.Bundle
 import com.codercats.pokipoki.home.R
 import kotlinx.android.synthetic.main.activity_main.*
 import android.support.v4.view.ViewPager
+import com.codercats.pokipoki.base.data.di.addModules
+import com.codercats.pokipoki.home.data.di.HomeModule
+import com.codercats.pokipoki.home.data.di.SearchModule
 import com.codercats.pokipoki.home.presentation.adapters.HomeViewPagerAdapter
 import com.codercats.pokipoki.home.presentation.fragments.HomeFragment
 import com.codercats.pokipoki.home.presentation.fragments.SearchFragment
@@ -17,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setUpNavigation()
         setupViewPager(content)
+        addModules(listOf(HomeModule(), SearchModule()))
     }
 
     private fun setUpNavigation() {

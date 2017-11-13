@@ -1,5 +1,6 @@
 apply plugin: 'com.android.feature'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply from: '../config/dependencies.gradle'
 
 android {
@@ -12,11 +13,21 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        debug {
+            buildConfigField("String", "API_HOST", '"https://api.pokemontcg.io"')
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField("String", "API_HOST", '"https://api.pokemontcg.io"')
         }
     }
+}
+
+kapt {
+    generateStubs = true
 }
 
 dependencies {
@@ -26,6 +37,18 @@ dependencies {
 
     application project(':app')
     feature project(':home')
+    api androidSupportDependencies.appcompat
+    api androidSupportDependencies.constraintlayout
+
+    implementation retrofitDependencies.adapterRx
+    implementation retrofitDependencies.converterGson
+    implementation retrofitDependencies.retrofit
+    implementation retrofitDependencies.retrofitLogger
+
+    implementation rxDependencies.rxJava
+    implementation rxDependencies.rxAndroid
+
+    implementation diDependencies.koin
 }
 repositories {
     mavenCentral()

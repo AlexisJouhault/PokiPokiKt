@@ -24,14 +24,30 @@ android {
 }
 
 dependencies {
-    implementation androidSupportDependencies.design
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':base')
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    
+    implementation androidSupportDependencies.appcompat
+    implementation androidSupportDependencies.constraintlayout
+    implementation androidSupportDependencies.recyclerview
+    implementation androidSupportDependencies.design
+
+    implementation retrofitDependencies.retrofit
+
+    implementation rxDependencies.rxJava
+    implementation rxDependencies.rxAndroid
+    implementation rxDependencies.rxbindingv7
+
+    implementation visualsDependencies.glide
+    implementation visualsDependencies.circleImageView
+    annotationProcessor visualsDependencies.glideCompiler
+
+    testImplementation testDependencies.junit
+    androidTestImplementation connectedTestDependencies.runner
+    androidTestImplementation connectedTestDependencies.espresso
+
+    implementation diDependencies.koin
+
 }

@@ -6,12 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import com.codercats.pokipoki.base.presentation.core.ViewPagerFragment
 import com.codercats.pokipoki.home.R
+import com.codercats.pokipoki.home.data.di.SearchModule
+import com.codercats.pokipoki.home.presentation.presenters.SearchPresenter
+import org.koin.android.ext.android.inject
 
 /**
  * Created by Alexis on 07/11/2017.
  *
  */
 class SearchFragment : ViewPagerFragment() {
+
+    override val contextName: String
+        get() = SearchModule.CTX_SEARCH_MODULE
+
+    private val searchPresenter : SearchPresenter by inject<SearchPresenter>()
 
     companion object {
 
