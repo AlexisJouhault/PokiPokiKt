@@ -13,12 +13,8 @@ class HomeModule : AndroidModule() {
 
     override fun context() = applicationContext {
 
-        provide {
-            SearchForCards(get(), get(), get())
-        }
-
         context(name = CTX_HOME_MODULE) {
-            provide { HomePresenter(get()) } bind (HomeContract.Presenter::class)
+            provide { HomePresenter() } bind (HomeContract.Presenter::class)
         }
 
     }

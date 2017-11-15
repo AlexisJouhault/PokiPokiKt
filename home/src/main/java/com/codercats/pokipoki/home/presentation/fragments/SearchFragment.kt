@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import com.codercats.pokipoki.base.presentation.core.ViewPagerFragment
 import com.codercats.pokipoki.home.R
 import com.codercats.pokipoki.home.data.di.SearchModule
+import com.codercats.pokipoki.home.presentation.contracts.SearchContract
 import com.codercats.pokipoki.home.presentation.presenters.SearchPresenter
 import org.koin.android.ext.android.inject
 
@@ -14,12 +15,12 @@ import org.koin.android.ext.android.inject
  * Created by Alexis on 07/11/2017.
  *
  */
-class SearchFragment : ViewPagerFragment() {
+class SearchFragment : ViewPagerFragment(), SearchContract.View {
 
     override val contextName: String
         get() = SearchModule.CTX_SEARCH_MODULE
 
-    private val searchPresenter : SearchPresenter by inject<SearchPresenter>()
+    override val presenter by inject<SearchPresenter>()
 
     companion object {
 
@@ -32,6 +33,24 @@ class SearchFragment : ViewPagerFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        presenter.view = this
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.initialize()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        presenter.destroy()
+    }
+
+    override fun showLoading() {
+    }
+
+    override fun hideLoading() {
+    }
+
 }
