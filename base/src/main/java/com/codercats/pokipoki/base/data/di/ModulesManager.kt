@@ -1,6 +1,7 @@
 package com.codercats.pokipoki.base.data.di
 
 import com.codercats.pokipoki.base.data.di.modules.NetworkModule
+import com.codercats.pokipoki.base.data.di.modules.UseCasesModule
 import com.codercats.pokipoki.base.presentation.PokiPokiApp
 
 /**
@@ -8,7 +9,7 @@ import com.codercats.pokipoki.base.presentation.PokiPokiApp
  *
  */
 
-fun getBaseModulesList() = listOf(NetworkModule())
+fun getBaseModulesList() = listOf(NetworkModule(), UseCasesModule())
 
 public fun android.support.v7.app.AppCompatActivity.addModules(modules: kotlin.collections.List<org.koin.android.module.AndroidModule>) : kotlin.Unit {
     val application = applicationContext as PokiPokiApp

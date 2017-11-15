@@ -1,5 +1,6 @@
 package com.codercats.pokipoki.home.presentation.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,6 +44,16 @@ class HomeFragment : ViewPagerFragment(), HomeContract.View {
         presenter.view = this
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.initialize()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        presenter.destroy()
     }
 
     override fun showLoading() {
