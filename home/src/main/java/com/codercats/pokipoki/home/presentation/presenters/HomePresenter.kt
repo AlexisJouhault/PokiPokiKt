@@ -20,10 +20,10 @@ class HomePresenter() : HomeContract.Presenter {
     override fun destroy() {
     }
 
-    class SearchForCardsObserver : DefaultObserver<List<Card>>() {
-
-        override fun onNext(result: List<Card>) {
-
-        }
+    override fun error(code: Int) {
     }
+
+    override fun taskComplete() {
+    }
+
 }

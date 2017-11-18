@@ -3,7 +3,7 @@ package com.codercats.pokipoki.home.presentation.adapters
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.codercats.pokipoki.base.presentation.core.ViewPagerFragment
+import com.codercats.pokipoki.base.presentation.core.fragments.ViewPagerFragment
 import com.codercats.pokipoki.home.presentation.fragments.HomeFragment
 import com.codercats.pokipoki.home.presentation.fragments.SearchFragment
 

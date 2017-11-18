@@ -2,6 +2,7 @@ package com.codercats.pokipoki.base.data.di.modules
 
 import com.codercats.pokipoki.base.data.cards.CardsDataRepository
 import com.codercats.pokipoki.base.data.cards.mapper.CardEntityDataMapper
+import com.codercats.pokipoki.base.data.cards.mapper.CardListResponseMapper
 import com.codercats.pokipoki.base.data.cards.repositories.CardsCloudDataStore
 import com.codercats.pokipoki.base.data.core.RetrofitHelper
 import com.codercats.pokipoki.base.domain.cards.CardsRepository
@@ -20,8 +21,9 @@ class NetworkModule : AndroidModule() {
             RetrofitHelper.build()
         } bind (Retrofit::class)
 
-        provide { CardsCloudDataStore(get()) }
         provide { CardEntityDataMapper() }
+        provide { CardListResponseMapper() }
+        provide { CardsCloudDataStore(get(), get()) }
         provide { CardsDataRepository(get(), get()) } bind (CardsRepository::class)
     }
 }

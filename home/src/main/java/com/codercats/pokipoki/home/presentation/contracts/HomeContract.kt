@@ -1,7 +1,7 @@
 package com.codercats.pokipoki.home.presentation.contracts
 
 import com.codercats.pokipoki.base.presentation.core.BasePresenter
-import com.codercats.pokipoki.base.presentation.core.LoadDataView
+import com.codercats.pokipoki.base.presentation.core.views.LoadDataView
 
 /**
  * Created by Alexis on 12/11/2017.

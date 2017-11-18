@@ -1,4 +1,4 @@
-package com.codercats.pokipoki.base.presentation.core
+package com.codercats.pokipoki.base.presentation.core.fragments
 
 import android.os.Bundle
 
@@ -13,10 +13,10 @@ abstract class ViewPagerFragment : BaseFragment() {
 
     companion object {
 
-        public val KEY_POSITION = "viewPagerFragment.position"
+        val KEY_POSITION = "viewPagerFragment.position"
 
         fun newInstance(position: Int, fragment: ViewPagerFragment): ViewPagerFragment {
-            val args: Bundle = Bundle()
+            val args = Bundle()
             args.putInt(KEY_POSITION, position)
             fragment.arguments = args
             return fragment

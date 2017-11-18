@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply from: '../config/dependencies.gradle'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -42,7 +44,7 @@ dependencies {
 
     implementation visualsDependencies.glide
     implementation visualsDependencies.circleImageView
-    annotationProcessor visualsDependencies.glideCompiler
+    kapt visualsDependencies.glideCompiler
 
     testImplementation testDependencies.junit
     androidTestImplementation connectedTestDependencies.runner

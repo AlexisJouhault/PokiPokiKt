@@ -6,8 +6,11 @@ package com.codercats.pokipoki.base.presentation.core
  */
 interface BasePresenter<T> {
 
+    val view: T
+
     fun initialize()
     fun destroy()
 
-    val view: T
+    fun error(code: Int)
+    fun taskComplete()
 }

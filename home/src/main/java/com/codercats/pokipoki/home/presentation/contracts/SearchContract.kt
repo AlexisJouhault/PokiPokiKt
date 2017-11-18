@@ -2,7 +2,7 @@ package com.codercats.pokipoki.home.presentation.contracts
 
 import com.codercats.pokipoki.base.domain.cards.model.Card
 import com.codercats.pokipoki.base.presentation.core.BasePresenter
-import com.codercats.pokipoki.base.presentation.core.LoadDataView
+import com.codercats.pokipoki.base.presentation.core.views.ListContentView
 
 /**
  * Created by Alexis on 15/11/2017.
@@ -10,12 +10,12 @@ import com.codercats.pokipoki.base.presentation.core.LoadDataView
  */
 interface SearchContract {
 
-    interface View : LoadDataView<Presenter> {
+    interface View : ListContentView<Card, Presenter> {
 
     }
 
     interface Presenter : BasePresenter<View> {
-
+        fun searchForCards(query: CharSequence)
         fun handleSearchResult(result: List<Card>)
     }
 }

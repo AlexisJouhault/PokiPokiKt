@@ -3,7 +3,9 @@
     package="com.codercats.pokipoki.home">
 
     <application>
-        <activity android:name=".presentation.MainActivity">
+        <activity android:name=".presentation.MainActivity"
+            android:windowSoftInputMode="adjustPan">
+
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -15,6 +17,7 @@
                     android:pathPattern="/.*"
                     android:scheme="https" />
             </intent-filter>
+            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

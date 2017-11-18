@@ -34,21 +34,23 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     api androidSupportDependencies.appcompat
     api androidSupportDependencies.constraintlayout
+    api androidSupportDependencies.recyclerview
+    api rxDependencies.rxbindingv7
 
     application project(':app')
     feature project(':home')
     api androidSupportDependencies.appcompat
     api androidSupportDependencies.constraintlayout
 
-    implementation retrofitDependencies.adapterRx
-    implementation retrofitDependencies.converterGson
-    implementation retrofitDependencies.retrofit
-    implementation retrofitDependencies.retrofitLogger
+    api retrofitDependencies.adapterRx
+    api retrofitDependencies.converterGson
+    api retrofitDependencies.retrofit
+    api retrofitDependencies.retrofitLogger
 
-    implementation rxDependencies.rxJava
-    implementation rxDependencies.rxAndroid
+    api rxDependencies.rxJava
+    api rxDependencies.rxAndroid
 
-    implementation diDependencies.koin
+    api diDependencies.koin
 }
 repositories {
     mavenCentral()

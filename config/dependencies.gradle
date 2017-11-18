@@ -55,7 +55,7 @@ ext {
             compiler    : "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
     ]
 
-    glideVersion = "4.0.0-RC1"
+    glideVersion = "4.3.1"
     circleImageViewVersion = "2.2.0"
 
     visualsDependencies = [

@@ -1,11 +1,10 @@
 package com.codercats.pokipoki.home.presentation.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.codercats.pokipoki.base.presentation.core.ViewPagerFragment
+import com.codercats.pokipoki.base.presentation.core.fragments.ViewPagerFragment
 import com.codercats.pokipoki.home.R
 import com.codercats.pokipoki.home.data.di.HomeModule
 import com.codercats.pokipoki.home.presentation.contracts.HomeContract
@@ -61,6 +60,10 @@ class HomeFragment : ViewPagerFragment(), HomeContract.View {
     }
 
     override fun hideLoading() {
+
+    }
+
+    override fun showError(code: Int) {
 
     }
 }
