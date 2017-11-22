@@ -10,6 +10,5 @@ import com.codercats.pokipoki.base.presentation.core.adapters.ViewType.Companion
 data class Card(val name: String,
                 val url: String) : ViewType {
 
-    override val viewType: Int
-        get() = CARD
+    override val viewType = CARD
 }

@@ -25,6 +25,10 @@ open class BaseAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return adapters[viewType].createViewHolder(parent)
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return items[position].viewType
+    }
+
     fun setItems(new: List<ViewType>) {
         if (!items.isEmpty()) {
             items.clear()

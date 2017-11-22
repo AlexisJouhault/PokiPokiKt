@@ -1,4 +1,5 @@
 <resources>
     <string name="text_home">Home</string>
     <string name="text_search">Search</string>
+    <string name="latest_set_title">Check out the latest set!</string>
 </resources>

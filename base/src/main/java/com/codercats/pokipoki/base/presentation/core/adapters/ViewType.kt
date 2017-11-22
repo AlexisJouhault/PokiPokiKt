@@ -10,5 +10,6 @@ interface ViewType {
 
     companion object {
         val CARD = 0
+        val SET = 1
     }
 }

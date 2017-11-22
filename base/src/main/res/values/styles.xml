@@ -12,4 +12,11 @@
         <item name="android:background">@drawable/background_round_corners</item>
     </style>
 
+    <style name="PokiPoki.Text" parent="TextAppearance.AppCompat"/>
+
+    <style name="PokiPoki.Text.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
 </resources>

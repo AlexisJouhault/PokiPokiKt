@@ -7,7 +7,7 @@ import com.codercats.pokipoki.base.domain.cards.model.Card
 import com.codercats.pokipoki.base.presentation.core.adapters.DelegateAdapter
 import com.codercats.pokipoki.base.presentation.core.views.ListContentView
 import com.codercats.pokipoki.home.R
-import com.codercats.pokipoki.home.presentation.CardViewHolder
+import com.codercats.pokipoki.home.presentation.views.viewholders.CardViewHolder
 
 /**
  * Created by Alexis on 16/11/2017.

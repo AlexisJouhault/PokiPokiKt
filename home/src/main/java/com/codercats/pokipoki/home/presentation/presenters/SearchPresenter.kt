@@ -25,7 +25,7 @@ class SearchPresenter(private val searchForCards: SearchForCards) : SearchContra
     override fun searchForCards(query: CharSequence) {
         if (!query.isEmpty()) {
             view.showLoading()
-            searchForCards.execute(SearchForCardsObserver(), query.toString())
+            searchForCards.execute(DefaultObserver<List<Card>>(this, this::handleSearchResult), query.toString())
         }
     }
 
@@ -43,20 +43,5 @@ class SearchPresenter(private val searchForCards: SearchForCards) : SearchContra
 
     override fun taskComplete() {
         view.hideLoading()
-    }
-
-    inner class SearchForCardsObserver : DefaultObserver<List<Card>>() {
-
-        override fun onNext(t: List<Card>) {
-            handleSearchResult(t)
-        }
-
-        override fun onComplete() {
-            taskComplete()
-        }
-
-        override fun onError(exception: Throwable) {
-            error(ErrorUtils.getErrorCode(exception))
-        }
     }
 }

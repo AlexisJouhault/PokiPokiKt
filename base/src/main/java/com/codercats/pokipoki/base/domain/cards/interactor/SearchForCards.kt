@@ -15,8 +15,8 @@ class SearchForCards(threadExecutor: ThreadExecutor,
                      postExecutionThread: PostExecutionThread,
                      private val cardsRepository: CardsRepository) : UseCase<List<Card>, String>(threadExecutor, postExecutionThread) {
 
-    override fun buildUseCaseObservable(params: String): Observable<List<Card>> {
-        return cardsRepository.search(params)
+    override fun buildUseCaseObservable(params: String?): Observable<List<Card>> {
+        return cardsRepository.search(params?: "")
     }
 
 }

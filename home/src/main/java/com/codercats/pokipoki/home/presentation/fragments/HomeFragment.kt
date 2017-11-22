@@ -1,26 +1,33 @@
 package com.codercats.pokipoki.home.presentation.fragments
 
 import android.os.Bundle
+import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.codercats.pokipoki.base.presentation.core.fragments.ViewPagerFragment
+import com.codercats.pokipoki.base.presentation.core.utils.GridUtils
+import com.codercats.pokipoki.base.presentation.core.views.ListContentView
 import com.codercats.pokipoki.home.R
 import com.codercats.pokipoki.home.data.di.HomeModule
+import com.codercats.pokipoki.home.domain.home.model.HomeSection
+import com.codercats.pokipoki.home.presentation.adapters.HomeSectionsAdapter
 import com.codercats.pokipoki.home.presentation.contracts.HomeContract
 import com.codercats.pokipoki.home.presentation.presenters.HomePresenter
+import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.ext.android.inject
 
 /**
  * Created by Alexis on 07/11/2017.
  *
  */
-class HomeFragment : ViewPagerFragment(), HomeContract.View {
+class HomeFragment : ViewPagerFragment(), HomeContract.View, ListContentView.OnItemClickListener<HomeSection> {
 
     override val contextName: String
         get() = HomeModule.CTX_HOME_MODULE
 
     override val presenter by inject<HomePresenter>()
+    private val adapter = HomeSectionsAdapter(this)
 
     companion object {
 
@@ -45,22 +52,34 @@ class HomeFragment : ViewPagerFragment(), HomeContract.View {
         return view
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val layoutManager = GridLayoutManager(context, GridUtils.DEFAULT_SPAN)
+        layoutManager.spanSizeLookup = adapter.HomeSpanSizeLookup()
+        sections.layoutManager = layoutManager
+        sections.adapter = adapter
         presenter.initialize()
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroyView() {
+        super.onDestroyView()
         presenter.destroy()
     }
 
-    override fun showLoading() {
+    override fun showContent(content: List<HomeSection>) {
+        adapter.setItems(content)
+    }
+
+    override fun onItemClick(item: HomeSection) {
 
     }
 
-    override fun hideLoading() {
+    override fun showLoading() {
+        progress.visibility = View.VISIBLE
+    }
 
+    override fun hideLoading() {
+        progress.visibility = View.GONE
     }
 
     override fun showError(code: Int) {

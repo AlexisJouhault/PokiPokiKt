@@ -1,5 +1,6 @@
 package com.codercats.pokipoki.base.domain.core
 
+import android.util.Log
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -10,15 +11,15 @@ import io.reactivex.schedulers.Schedulers
  * Created by Alexis on 09/11/2017.
  *
  */
-abstract class UseCase<T, Params> internal constructor(private val threadExecutor: ThreadExecutor,
-                                                       private val postExecutionThread: PostExecutionThread) {
+abstract class UseCase<T, in Params> (private val threadExecutor: ThreadExecutor,
+                                                          private val postExecutionThread: PostExecutionThread) {
 
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     /**
      * Builds an [Observable] which will be used when executing the current [UseCase].
      */
-    internal abstract fun buildUseCaseObservable(params: Params): Observable<T>
+    abstract fun buildUseCaseObservable(params: Params?): Observable<T>
 
     /**
      * Executes the current use case.
@@ -27,11 +28,15 @@ abstract class UseCase<T, Params> internal constructor(private val threadExecuto
      * by [.buildUseCaseObservable] ()} method.
      * @param params Parameters (Optional) used to build/execute this use case.
      */
-    fun execute(observer: DisposableObserver<T>, params: Params) {
+    fun execute(observer: DisposableObserver<T>, params: Params?) {
         val observable = this.buildUseCaseObservable(params)
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.scheduler)
         addDisposable(observable.subscribeWith(observer))
+    }
+
+    fun execute(observer: DisposableObserver<T>) {
+        execute(observer, null)
     }
 
     /**

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.codercats.pokipoki.base.domain.cards.model.Card
 import com.codercats.pokipoki.base.presentation.core.fragments.ViewPagerFragment
+import com.codercats.pokipoki.base.presentation.core.utils.GridUtils
 import com.codercats.pokipoki.base.presentation.core.utils.RxUtils
 import com.codercats.pokipoki.base.presentation.core.views.ListContentView
 import com.codercats.pokipoki.home.R
@@ -23,11 +24,11 @@ import org.koin.android.ext.android.inject
  */
 class SearchFragment : ViewPagerFragment(), SearchContract.View, ListContentView.OnItemClickListener<Card> {
 
-    private val RESULT_SPAN = 3
     override val contextName: String
         get() = SearchModule.CTX_SEARCH_MODULE
 
     override val presenter by inject<SearchPresenter>()
+    private val adapter = CardListAdapter(this)
 
     companion object {
 
@@ -39,8 +40,6 @@ class SearchFragment : ViewPagerFragment(), SearchContract.View, ListContentView
 
     }
 
-    private val adapter = CardListAdapter(this)
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
         presenter.view = this
@@ -49,18 +48,14 @@ class SearchFragment : ViewPagerFragment(), SearchContract.View, ListContentView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        results.layoutManager = GridLayoutManager(context, RESULT_SPAN)
+        results.layoutManager = GridLayoutManager(context, GridUtils.DEFAULT_SPAN)
         results.adapter = adapter
         RxUtils.subscribeToSearchView(searchview, presenter::searchForCards)
-    }
-
-    override fun onResume() {
-        super.onResume()
         presenter.initialize()
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onDestroyView() {
+        super.onDestroyView()
         presenter.destroy()
     }
 

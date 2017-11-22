@@ -1,4 +1,4 @@
-package com.codercats.pokipoki.home.presentation
+package com.codercats.pokipoki.home.presentation.views.viewholders
 
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView

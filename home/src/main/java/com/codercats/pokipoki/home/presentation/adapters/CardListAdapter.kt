@@ -13,8 +13,6 @@ import com.codercats.pokipoki.base.presentation.core.views.ListContentView
  */
 class CardListAdapter(private val onItemClickListener: ListContentView.OnItemClickListener<Card>) : BaseAdapter() {
 
-    private val cards = ArrayList<Card>()
-
     init {
         adapters.put(ViewType.CARD, CardDelegateAdapter(onItemClickListener) as DelegateAdapter<RecyclerView.ViewHolder, ViewType>)
     }
