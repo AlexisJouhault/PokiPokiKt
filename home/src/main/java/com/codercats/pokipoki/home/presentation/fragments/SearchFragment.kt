@@ -5,6 +5,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.codercats.pokipoki.base.domain.cards.model.Card
 import com.codercats.pokipoki.base.presentation.core.fragments.ViewPagerFragment
 import com.codercats.pokipoki.base.presentation.core.utils.GridUtils
@@ -17,6 +18,11 @@ import com.codercats.pokipoki.home.presentation.contracts.SearchContract
 import com.codercats.pokipoki.home.presentation.presenters.SearchPresenter
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.koin.android.ext.android.inject
+import android.support.v4.app.ActivityOptionsCompat
+import com.codercats.pokipoki.home.presentation.DetailsActivity
+import android.content.Intent
+
+
 
 /**
  * Created by Alexis on 07/11/2017.
@@ -67,8 +73,16 @@ class SearchFragment : ViewPagerFragment(), SearchContract.View, ListContentView
     }
 
     override fun onItemClick(item: Card) {
-
     }
+
+    override fun onItemClickWithTransition(item: Card, itemView: View) {
+        Toast.makeText(context, item.name, Toast.LENGTH_SHORT).show()
+        val intent = Intent(context, DetailsActivity::class.java)
+        intent.putExtra(Card.PACKAGE_NAME, item)
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, itemView, "cardPreview")
+        startActivity(intent, options.toBundle())
+    }
+
 
     override fun showLoading() {
         progress.visibility = View.VISIBLE

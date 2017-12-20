@@ -20,8 +20,7 @@ class CardEntityDataMapper constructor() {
     }
 
     private fun transform(cardEntity: CardEntity): Card {
-        return Card(name = cardEntity.name,
-                url = cardEntity.url)
+        return Card(cardEntity)
     }
 
 

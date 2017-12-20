@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <com.codercats.pokipoki.base.presentation.core.views.CardImageView
-        android:id="@+id/thumbnail"
+        android:id="@+id/card_preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginEnd="1dp"

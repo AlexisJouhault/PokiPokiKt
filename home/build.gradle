@@ -44,6 +44,7 @@ dependencies {
 
     implementation visualsDependencies.glide
     implementation visualsDependencies.circleImageView
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     kapt visualsDependencies.glideCompiler
 
     testImplementation testDependencies.junit

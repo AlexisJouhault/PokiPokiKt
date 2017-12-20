@@ -3,9 +3,9 @@
     package="com.codercats.pokipoki.home">
 
     <application>
-        <activity android:name=".presentation.MainActivity"
+        <activity
+            android:name=".presentation.MainActivity"
             android:windowSoftInputMode="adjustPan">
-
             <intent-filter android:order="1">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -17,11 +17,23 @@
                     android:pathPattern="/.*"
                     android:scheme="https" />
             </intent-filter>
-            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".presentation.DetailsActivity">
+            <intent-filter android:order="1">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="codercats.com"
+                    android:pathPattern="/.*"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
     </application>

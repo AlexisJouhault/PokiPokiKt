@@ -13,13 +13,13 @@ import com.codercats.pokipoki.home.presentation.views.viewholders.CardViewHolder
  * Created by Alexis on 16/11/2017.
  *
  */
-class CardDelegateAdapter(onItemClickListener: ListContentView.OnItemClickListener<Card>) : DelegateAdapter<CardViewHolder, Card> {
+class CardDelegateAdapter(val onItemClickListener: ListContentView.OnItemClickListener<Card>) : DelegateAdapter<CardViewHolder, Card> {
 
     override fun createViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         return CardViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.viewtype_card, parent, false))
     }
 
     override fun onBindViewHolder(viewHolder: CardViewHolder, item: Card) {
-        viewHolder.bind(item)
+        viewHolder.bind(item, onItemClickListener)
     }
 }

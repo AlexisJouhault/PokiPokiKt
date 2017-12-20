@@ -74,6 +74,10 @@ class HomeFragment : ViewPagerFragment(), HomeContract.View, ListContentView.OnI
 
     }
 
+    override fun onItemClickWithTransition(item: HomeSection, itemView: View) {
+
+    }
+
     override fun showLoading() {
         progress.visibility = View.VISIBLE
     }
