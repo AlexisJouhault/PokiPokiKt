@@ -23,6 +23,7 @@ pipeline {
                 echo "My branch is: ${env.GIT_BRANCH}"
 
                 //build your gradle flavor, passes the current build number as a parameter to gradle
+                sh gradlew cleanBuildCache
                 sh "./gradlew clean assembleDebug -PBUILD_NUMBER=${env.BUILD_NUMBER}"
             }
         }
