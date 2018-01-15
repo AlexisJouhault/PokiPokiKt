@@ -9,9 +9,9 @@ node {
   stage 'Stage Build'
 
   //branch name from Jenkins environment variables
-  echo "My branch is: ${env.BRANCH_NAME}"
+  echo "My branch is: ${env.GIT_BRANCH}"
 
-  def flavor = flavor(env.BRANCH_NAME)
+  def flavor = flavor(debug)
   echo "Building flavor ${flavor}"
 
   //build your gradle flavor, passes the current build number as a parameter to gradle
@@ -23,12 +23,4 @@ node {
 
   stage 'Stage Upload To Fabric'
   sh "./gradlew crashlyticsUploadDistribution${flavor}Debug  -PBUILD_NUMBER=${env.BUILD_NUMBER}"
-}
-
-// Pulls the android flavor out of the branch name the branch is prepended with /QA_
-@NonCPS
-def flavor(branchName) {
-  def matcher = (env.BRANCH_NAME =~ /QA_([a-z_]+)/)
-  assert matcher.matches()
-  matcher[0][1]
 }
