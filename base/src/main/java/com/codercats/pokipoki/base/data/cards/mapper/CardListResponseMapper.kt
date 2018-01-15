@@ -2,6 +2,7 @@ package com.codercats.pokipoki.base.data.cards.mapper
 
 import com.codercats.pokipoki.base.data.cards.entity.CardEntity
 import com.codercats.pokipoki.base.data.cards.responses.CardListResponse
+import com.codercats.pokipoki.base.data.core.exceptions.NetworkException
 
 /**
  * Created by Alexis on 18/11/2017.
@@ -10,7 +11,7 @@ import com.codercats.pokipoki.base.data.cards.responses.CardListResponse
 class CardListResponseMapper {
 
     fun transform(response: CardListResponse) : List<CardEntity> {
-        //todo process response here (if no content throw error)
+        response.cards.isEmpty().apply { throw NetworkException(NetworkException.Codes.NO_CONTENT) }
         return response.cards
     }
 

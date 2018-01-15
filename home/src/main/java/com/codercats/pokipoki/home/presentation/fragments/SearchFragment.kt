@@ -5,7 +5,6 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.codercats.pokipoki.base.domain.cards.model.Card
 import com.codercats.pokipoki.base.presentation.core.fragments.ViewPagerFragment
 import com.codercats.pokipoki.base.presentation.core.utils.GridUtils
@@ -69,14 +68,13 @@ class SearchFragment : ViewPagerFragment(), SearchContract.View, ListContentView
         adapter.setItems(content)
     }
 
-    override fun showError(code: Int) {
+    override fun showError(message: String) {
     }
 
     override fun onItemClick(item: Card) {
     }
 
     override fun onItemClickWithTransition(item: Card, itemView: View) {
-        Toast.makeText(context, item.name, Toast.LENGTH_SHORT).show()
         val intent = Intent(context, DetailsActivity::class.java)
         intent.putExtra(Card.PACKAGE_NAME, item)
         val options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, itemView, "cardPreview")

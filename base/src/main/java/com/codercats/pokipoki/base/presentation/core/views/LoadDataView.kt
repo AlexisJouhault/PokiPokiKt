@@ -10,5 +10,5 @@ interface LoadDataView<T> {
 
     fun showLoading()
     fun hideLoading()
-    fun showError(code: Int)
+    fun showError(message: String)
 }

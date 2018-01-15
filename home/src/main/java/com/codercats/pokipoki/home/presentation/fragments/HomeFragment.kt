@@ -86,7 +86,7 @@ class HomeFragment : ViewPagerFragment(), HomeContract.View, ListContentView.OnI
         progress.visibility = View.GONE
     }
 
-    override fun showError(code: Int) {
+    override fun showError(message: String) {
 
     }
 }

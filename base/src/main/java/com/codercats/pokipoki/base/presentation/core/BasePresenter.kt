@@ -11,6 +11,6 @@ interface BasePresenter<T> {
     fun initialize()
     fun destroy()
 
-    fun error(code: Int)
+    fun error(message: String)
     fun taskComplete()
 }

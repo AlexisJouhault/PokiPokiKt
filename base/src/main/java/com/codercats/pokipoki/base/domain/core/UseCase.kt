@@ -1,6 +1,7 @@
 package com.codercats.pokipoki.base.domain.core
 
 import android.util.Log
+import com.codercats.pokipoki.base.data.core.exceptions.NetworkException
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable

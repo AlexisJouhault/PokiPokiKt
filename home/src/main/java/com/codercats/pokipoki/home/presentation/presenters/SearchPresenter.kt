@@ -2,8 +2,7 @@ package com.codercats.pokipoki.home.presentation.presenters
 
 import com.codercats.pokipoki.base.domain.cards.interactor.SearchForCards
 import com.codercats.pokipoki.base.domain.cards.model.Card
-import com.codercats.pokipoki.base.domain.core.DefaultObserver
-import com.codercats.pokipoki.base.presentation.core.utils.ErrorUtils
+import com.codercats.pokipoki.base.domain.core.DefaultUseCaseObserver
 import com.codercats.pokipoki.home.presentation.contracts.SearchContract
 
 /**
@@ -25,20 +24,18 @@ class SearchPresenter(private val searchForCards: SearchForCards) : SearchContra
     override fun searchForCards(query: CharSequence) {
         if (!query.isEmpty()) {
             view.showLoading()
-            searchForCards.execute(DefaultObserver<List<Card>>(this, this::handleSearchResult), query.toString())
+            searchForCards.execute(DefaultUseCaseObserver<List<Card>>(this, this::handleSearchResult), query.toString())
         }
     }
 
     override fun handleSearchResult(result: List<Card>) {
         if (!result.isEmpty()) {
             view.showContent(result)
-        } else {
-            view.showError(ErrorUtils.NO_CONTENT)
         }
     }
 
-    override fun error(code: Int) {
-        view.showError(code)
+    override fun error(message: String) {
+        view.showError(message)
     }
 
     override fun taskComplete() {

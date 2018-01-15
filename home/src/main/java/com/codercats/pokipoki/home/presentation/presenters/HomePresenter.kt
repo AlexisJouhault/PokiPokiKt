@@ -1,6 +1,6 @@
 package com.codercats.pokipoki.home.presentation.presenters
 
-import com.codercats.pokipoki.base.domain.core.DefaultObserver
+import com.codercats.pokipoki.base.domain.core.DefaultUseCaseObserver
 import com.codercats.pokipoki.base.presentation.core.utils.ErrorUtils
 import com.codercats.pokipoki.home.domain.home.interactor.GetHomeContent
 import com.codercats.pokipoki.home.domain.home.model.HomeSection
@@ -16,7 +16,7 @@ class HomePresenter(private val getHomeContent: GetHomeContent): HomeContract.Pr
 
     override fun initialize() {
         view.showLoading()
-        getHomeContent.execute(DefaultObserver<List<HomeSection>>(this, this::handleSectionsResult))
+        getHomeContent.execute(DefaultUseCaseObserver<List<HomeSection>>(this, this::handleSectionsResult))
     }
 
     override fun destroy() {
@@ -26,14 +26,12 @@ class HomePresenter(private val getHomeContent: GetHomeContent): HomeContract.Pr
     override fun handleSectionsResult(homeSections: List<HomeSection>) {
         if (!homeSections.isEmpty()) {
             view.showContent(homeSections)
-        } else {
-            view.showError(ErrorUtils.NO_CONTENT)
         }
     }
 
-    override fun error(code: Int) {
+    override fun error(message: String) {
         view.hideLoading()
-        view.showError(code)
+        view.showError(message)
     }
 
     override fun taskComplete() {
