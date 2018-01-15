@@ -1,26 +1,45 @@
-node {
-  // Mark the code checkout 'stage'....
-  stage 'Stage Checkout'
+pipeline {
+    agent any
 
-  // Checkout code from repository and update any submodules
-  checkout scm
-  sh 'git submodule update --init'
+    environment {
+        flavor = ''
 
-  stage 'Stage Build'
+    }
 
-  //branch name from Jenkins environment variables
-  echo "My branch is: ${env.GIT_BRANCH}"
+    stages {
 
-  def flavor = flavor(debug)
-  echo "Building flavor ${flavor}"
+        // Mark the code checkout 'stage'....
+        stage ('Stage Checkout') {
+            steps {
+                // Checkout code from repository and update any submodules
+                checkout scm
+                sh 'git submodule update --init'
+            }
+        }
 
-  //build your gradle flavor, passes the current build number as a parameter to gradle
-  sh "./gradlew clean assemble${flavor}Debug -PBUILD_NUMBER=${env.BUILD_NUMBER}"
+        stage('Stage Build') {
+            steps {
+                //branch name from Jenkins environment variables
+                echo "My branch is: ${env.GIT_BRANCH}"
 
-  stage 'Stage Archive'
-  //tell Jenkins to archive the apks
-  archiveArtifacts artifacts: 'app/build/outputs/apk/*.apk', fingerprint: true
+                echo "Building flavor ${flavor}"
 
-  stage 'Stage Upload To Fabric'
-  sh "./gradlew crashlyticsUploadDistribution${flavor}Debug  -PBUILD_NUMBER=${env.BUILD_NUMBER}"
+                //build your gradle flavor, passes the current build number as a parameter to gradle
+                sh "./gradlew clean assemble${flavor}Debug -PBUILD_NUMBER=${env.BUILD_NUMBER}"
+            }
+        }
+
+        stage('Stage Archive') {
+            steps {
+                //tell Jenkins to archive the apks
+                archiveArtifacts artifacts: 'app/build/outputs/apk/*.apk', fingerprint: true
+            }
+        }
+
+        /*
+        stage('Stage Upload To Fabric') {
+            sh "./gradlew crashlyticsUploadDistribution${flavor}Debug  -PBUILD_NUMBER=${env.BUILD_NUMBER}"
+        }
+        */
+    }
 }
