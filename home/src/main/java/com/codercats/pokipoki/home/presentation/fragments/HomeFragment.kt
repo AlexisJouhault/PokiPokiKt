@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.codercats.pokipoki.base.presentation.core.fragments.ViewPagerFragment
 import com.codercats.pokipoki.base.presentation.core.utils.GridUtils
+import com.codercats.pokipoki.base.presentation.core.views.ErrorView
 import com.codercats.pokipoki.base.presentation.core.views.ListContentView
 import com.codercats.pokipoki.home.R
 import com.codercats.pokipoki.home.data.di.HomeModule
@@ -21,7 +22,7 @@ import org.koin.android.ext.android.inject
  * Created by Alexis on 07/11/2017.
  *
  */
-class HomeFragment : ViewPagerFragment(), HomeContract.View, ListContentView.OnItemClickListener<HomeSection> {
+class HomeFragment : ViewPagerFragment(), HomeContract.View, ListContentView.OnItemClickListener<HomeSection>, ErrorView.OnRetryListener {
 
     override val contextName: String
         get() = HomeModule.CTX_HOME_MODULE
@@ -58,6 +59,7 @@ class HomeFragment : ViewPagerFragment(), HomeContract.View, ListContentView.OnI
         layoutManager.spanSizeLookup = adapter.HomeSpanSizeLookup()
         sections.layoutManager = layoutManager
         sections.adapter = adapter
+        errorview.onRetryListener = this
         presenter.initialize()
     }
 
@@ -87,6 +89,11 @@ class HomeFragment : ViewPagerFragment(), HomeContract.View, ListContentView.OnI
     }
 
     override fun showError(message: String) {
-
+        errorview.displayErrorMessage(message)
     }
+
+    override fun onRetry() {
+        presenter.initialize()
+    }
+
 }
