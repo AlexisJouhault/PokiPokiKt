@@ -2,5 +2,6 @@
 <resources>
 
     <dimen name="error_view_size">30dp</dimen>
+    <dimen name="error_view_image_size">200dp</dimen>
 
 </resources>

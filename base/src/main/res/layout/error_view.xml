@@ -6,9 +6,20 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/error_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:id="@+id/appCompatImageView"
+        android:layout_width="@dimen/error_view_image_size"
+        android:layout_height="@dimen/error_view_image_size"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/error_placeholder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/error_message"
@@ -21,10 +32,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView"
+        app:layout_constraintVertical_bias="0.1"
         tools:text="An error occurred blabalblablablablbbablalb" />
 
     <android.support.v7.widget.AppCompatButton
+        android:theme="@style/PokiPoki.PrimaryButton"
         android:id="@+id/error_retry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,6 +49,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/error_message" />
+        app:layout_constraintTop_toBottomOf="@+id/error_message"
+        app:layout_constraintVertical_bias="0.1" />
 
 </android.support.constraint.ConstraintLayout>
