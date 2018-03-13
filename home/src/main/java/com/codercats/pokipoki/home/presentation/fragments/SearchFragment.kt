@@ -37,7 +37,7 @@ class SearchFragment : ViewPagerFragment(), SearchContract.View, ListContentView
 
     companion object {
 
-        val POSITION = 1
+        const val POSITION = 1
 
         fun newInstance(): SearchFragment {
             return ViewPagerFragment.newInstance(POSITION, SearchFragment()) as SearchFragment

@@ -13,7 +13,7 @@ abstract class ViewPagerFragment : BaseFragment() {
 
     companion object {
 
-        val KEY_POSITION = "viewPagerFragment.position"
+        const val KEY_POSITION = "viewPagerFragment.position"
 
         fun newInstance(position: Int, fragment: ViewPagerFragment): ViewPagerFragment {
             val args = Bundle()

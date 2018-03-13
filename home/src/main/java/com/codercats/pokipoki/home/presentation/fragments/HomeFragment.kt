@@ -32,7 +32,7 @@ class HomeFragment : ViewPagerFragment(), HomeContract.View, ListContentView.OnI
 
     companion object {
 
-        val POSITION = 0
+        const val POSITION = 0
 
         fun newInstance(): HomeFragment {
             return ViewPagerFragment.newInstance(POSITION, HomeFragment()) as HomeFragment
